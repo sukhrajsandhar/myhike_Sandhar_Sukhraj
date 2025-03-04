@@ -31,7 +31,7 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
-    <!-------------------------------------------->
+    <!-  ----------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
@@ -52,14 +52,89 @@
         <div class="container bg-light p-5">
             <h1 class="display-4">Good morning, <span id="name-goes-here"></span></h1>
             <hr>
-            <p>Quote of the day: The best view comes after the hardest climb.</p>
+            <p>Quote of the day: <span id="quote-goes-here"></span></p>
+            
         </div>
     </div>
+
+    <div class="container"> 
+        <h1>Some popular hikes</h1>
+        <!-- Here is the container for cards  -->
+        <div class="container">
+            <div id="hikes-go-here" class="row row-cols-auto">
+                <template id="hikeCardTemplate">
+                    <div class="card py-2 mx-2" style="width: 18rem">
+                        <img class="card-image card-img-top" src=" ..." alt="..." />
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-length">placeholder</p>
+                            <br />
+                            <p class="card-text">
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </p>
+                            <a class="btn btn-primary card-href">Read more ...</a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+</div>
+
     <!-- stuff -->
 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
 
+
+
+<!-- Scripts -->
+<script>
+    function writeHikes() {
+        //define a variable for the collection you want to create in Firestore to populate data
+        var hikesRef = db.collection("hikes");
+    
+        hikesRef.add({
+            code: "BBY01",
+            name: "Burnaby Lake Park Trail", //replace with your own city?
+            city: "Burnaby",
+            province: "BC",
+            level: "easy",
+                    details: "A lovely place for lunch walk",
+            length: 10,          //number value
+            hike_time: 60,       //number value
+            lat: 49.2467097082573,
+            lng: -122.9187029619698,
+            last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
+        });
+        hikesRef.add({
+            code: "AM01",
+            name: "Buntzen Lake Trail", //replace with your own city?
+            city: "Anmore",
+            province: "BC",
+            level: "moderate",
+            details: "Close to town, and relaxing",
+            length: 10.5,      //number value
+            hike_time: 80,     //number value
+            lat: 49.3399431028579,
+            lng: -122.85908496766939,
+            last_updated: firebase.firestore.Timestamp.fromDate(new Date("March 10, 2022"))
+        });
+        hikesRef.add({
+            code: "NV01",
+            name: "Mount Seymour Trail", //replace with your own city?
+            city: "North Vancouver",
+            province: "BC",
+            level: "hard",
+            details:  "Amazing ski slope views",
+            length: 8.2,        //number value
+            hike_time: 120,     //number value
+            lat: 49.38847101455571,
+            lng: -122.94092543551031,
+            last_updated: firebase.firestore.Timestamp.fromDate(new Date("January 1, 2023"))
+        });
+    }
+                </script>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
